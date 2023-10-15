@@ -14,7 +14,7 @@
                 <tr>
                     <td>{{$currency->name}}</td>
                     <td>{{$currency->rate}}</td>
-                    <td><button class="btn btn-danger" wire:click="delete({{$currency->id}})">Delete</button></td>
+                    <td><button class="btn btn-danger" wire:click="deleteConfirm({{$currency->id}})">Delete</button></td>
                 </tr>
             @endforeach
     </table>

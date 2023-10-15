@@ -10,6 +10,7 @@ use Spatie\QueryBuilder\QueryBuilder;
 
 class Currencies extends Component
 {
+    protected $listeners = ['delete'];
     protected $queryString = ['search'];
 
     public $search = '';
@@ -27,8 +28,23 @@ class Currencies extends Component
         return view('livewire.currencies', compact('currencies'));
     }
 
+    public function deleteConfirm($id)
+    {
+        $this->dispatch('swal:confirm',
+            type: 'warning',
+            title: 'Are you sure?',
+            text: '',
+            id: $id
+        );
+    }
+
     public function delete($id)
     {
         Currency::find($id)->delete();
+
+        $this->dispatch('swal:modal',
+            type: 'success',
+            title: 'Record successfully deleted.',
+            text: '');
     }
 }
