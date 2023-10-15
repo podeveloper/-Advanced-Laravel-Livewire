@@ -32,7 +32,6 @@ class CurrencyCreate extends Component
            'rate' => $this->rate,
         ]);
 
-        $this->name = '';
-        $this->rate = '';
+        $this->reset();
     }
 }
