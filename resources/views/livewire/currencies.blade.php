@@ -9,12 +9,16 @@
 
     </div>
     <hr>
-    <table class="table table-striped">
-        @foreach($currencies as $curency)
-            <tr>
-                <td>{{$curency->name}}</td>
-                <td>{{$curency->rate}}</td>
-            </tr>
-        @endforeach
+    <table wire:init="somethingLoading" class="table table-striped">
+        @if($loading)
+            <div>Loading...</div>
+        @else
+            @foreach($currencies as $curency)
+                <tr>
+                    <td>{{$curency->name}}</td>
+                    <td>{{$curency->rate}}</td>
+                </tr>
+            @endforeach
+        @endif
     </table>
 </div>

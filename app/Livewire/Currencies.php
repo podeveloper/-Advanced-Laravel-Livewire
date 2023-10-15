@@ -13,6 +13,7 @@ class Currencies extends Component
     protected $queryString = ['search'];
 
     public $search = '';
+    public $loading = true;
 
     public function render()
     {
@@ -24,5 +25,11 @@ class Currencies extends Component
             ->get();
 
         return view('livewire.currencies', compact('currencies'));
+    }
+
+    public function somethingLoading()
+    {
+        sleep(3);
+        $this->loading = false;
     }
 }
