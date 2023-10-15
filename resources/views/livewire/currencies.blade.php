@@ -9,16 +9,13 @@
 
     </div>
     <hr>
-    <table wire:init="somethingLoading" class="table table-striped">
-        @if($loading)
-            <div>Loading...</div>
-        @else
-            @foreach($currencies as $curency)
+    <table class="table table-striped">
+            @foreach($currencies as $currency)
                 <tr>
-                    <td>{{$curency->name}}</td>
-                    <td>{{$curency->rate}}</td>
+                    <td>{{$currency->name}}</td>
+                    <td>{{$currency->rate}}</td>
+                    <td><button class="btn btn-danger" wire:click="delete({{$currency->id}})">Delete</button></td>
                 </tr>
             @endforeach
-        @endif
     </table>
 </div>

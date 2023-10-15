@@ -27,9 +27,8 @@ class Currencies extends Component
         return view('livewire.currencies', compact('currencies'));
     }
 
-    public function somethingLoading()
+    public function delete($id)
     {
-        sleep(3);
-        $this->loading = false;
+        Currency::find($id)->delete();
     }
 }
