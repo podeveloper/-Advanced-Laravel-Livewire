@@ -3,6 +3,7 @@
 namespace App\Livewire;
 
 use App\Models\Currency;
+use App\Services\CurrencyService;
 use Livewire\Component;
 
 class CurrencyCreate extends Component
@@ -27,10 +28,7 @@ class CurrencyCreate extends Component
     {
         $this->validate();
 
-        Currency::create([
-           'name' => $this->name,
-           'rate' => $this->rate,
-        ]);
+        (new CurrencyService())->store($this->name, $this->rate);
 
         $this->reset();
     }
