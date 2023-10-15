@@ -17,3 +17,4 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::view('/currencies','currencies.index');
+Route::view('/currencies/create','currencies.create');
