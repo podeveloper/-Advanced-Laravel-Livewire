@@ -10,6 +10,8 @@ use Spatie\QueryBuilder\QueryBuilder;
 
 class Currencies extends Component
 {
+    protected $queryString = ['search'];
+
     public $search = '';
 
     public function render()
