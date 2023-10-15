@@ -5,18 +5,22 @@ namespace App\Livewire;
 use App\Models\Currency;
 use GuzzleHttp\Client;
 use Livewire\Component;
+use Spatie\QueryBuilder\AllowedFilter;
+use Spatie\QueryBuilder\QueryBuilder;
 
 class Currencies extends Component
 {
-    public $currencies;
-
-    public function mount()
-    {
-        $this->currencies = Currency::get(['id','name','rate']);
-    }
+    public $search = '';
 
     public function render()
     {
-        return view('livewire.currencies');
+        $currencies = Currency::query()
+            ->when($this->search != '', function ($query) {
+                $query->where('name','like','%'.$this->search.'%')
+                    ->orWhere('rate','like','%'.$this->search.'%');
+            })
+            ->get();
+
+        return view('livewire.currencies', compact('currencies'));
     }
 }
